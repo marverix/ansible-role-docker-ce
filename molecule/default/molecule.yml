@@ -1,0 +1,39 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+platforms:
+  - name: ubuntu16
+    image: bitbar/ubupy:xenial
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+
+  - name: ubuntu18
+    image: bitbar/ubupy:bionic
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+
+  - name: centos7
+    image: pycontribs/centos:7
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+
+provisioner:
+  name: ansible
+
+verifier:
+  name: ansible

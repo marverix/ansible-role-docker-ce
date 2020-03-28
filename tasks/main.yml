@@ -1,0 +1,138 @@
+---
+- name: "Update pip"
+  pip:
+    name: pip
+    state: latest
+
+  # https://docs.docker.com/install/linux/docker-ce/ubuntu/
+- name: Install Docker CE on Ubuntu
+  when: ansible_distribution == 'Ubuntu'
+  block:
+
+    - name: Uninstall old packages
+      yum:
+        name:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+        state: absent
+
+    - name: Double-check dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - gnupg-agent
+          - software-properties-common
+            # Below are for Docker Compose
+          - build-essential
+          - libssl-dev
+          - libffi-dev
+          - python-dev
+        state: present
+        update_cache: yes
+
+    - name: Add key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+        state: present
+
+    - name: Add repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+
+    - name: Install Docker CE
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+        update_cache: yes
+
+
+  # https://docs.docker.com/install/linux/docker-ce/centos/
+- name: Install Docker CE on CentOS
+  when: ansible_distribution == 'CentOS'
+  block:
+
+    - name: Uninstall old packages
+      yum:
+        name:
+          - docker
+          - docker-client
+          - docker-client-latest
+          - docker-common
+          - docker-latest
+          - docker-latest-logrotate
+          - docker-logrotate
+          - docker-engine
+        state: absent
+
+    - name: Double-check dependencies
+      yum:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+            # Below are for Docker compose
+          - gcc
+          - libffi-devel
+          - python-devel
+          - openssl-devel
+        state: present
+        update_cache: yes
+
+    - name: Add repository
+      yum_repository:
+        name: docker-ce
+        description: Docker CE Stable
+        baseurl: "https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/stable"
+        enabled: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        gpgcheck: yes
+        state: present
+
+    - name: Install Docker CE
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+        update_cache: yes
+
+- name: Enable Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  ignore_errors: yes
+
+- name: Flush handlers
+  meta: flush_handlers
+
+- name: Install Docker SDK
+  pip:
+    name: docker
+    version: "{{ docker_sdk_version }}"
+    state: present
+
+- name: Install Docker Compose
+  pip:
+    name: docker-compose
+    version: "{{ docker_compose_version }}"
+    state: present
+
+- name: Add user to docker group
+  user:
+    name: "{{ docker_user | default(ansible_user_id) }}"
+    groups: docker
+    append: yes
+
+- name: Reset SSH connection to allow user changes to affect
+  meta: reset_connection
