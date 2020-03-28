@@ -1,5 +1,10 @@
 # Ansible Role: Docker CE
 
+[![Build Status](https://travis-ci.com/marverix/ansible-role-docker-ce.svg?branch=master)](https://travis-ci.com/marverix/ansible-role-docker-ce)
+![Ansible Quality Score](https://img.shields.io/ansible/quality/47502)
+![Ansible Role](https://img.shields.io/ansible/role/47502)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
+
 Ansible role that installs on linux Docker CE + Docker Compose + Python Docker SDK.
 
 ## Requirements
