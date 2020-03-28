@@ -2,7 +2,7 @@
 - name: "Update pip"
   pip:
     name: pip
-    state: latest
+    extra_args: --upgrade
 
   # https://docs.docker.com/install/linux/docker-ce/ubuntu/
 - name: Install Docker CE on Ubuntu
