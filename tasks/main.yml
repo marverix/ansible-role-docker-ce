@@ -121,12 +121,14 @@
     name: docker
     version: "{{ docker_sdk_version }}"
     state: present
+  when: docker_sdk_version
 
 - name: Install Docker Compose
   pip:
     name: docker-compose
     version: "{{ docker_compose_version }}"
     state: present
+  when: docker_compose_version
 
 - name: Add user to docker group
   user:
@@ -136,3 +138,4 @@
 
 - name: Reset SSH connection to allow user changes to affect
   meta: reset_connection
+  when: docker_reset_connection

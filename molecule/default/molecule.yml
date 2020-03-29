@@ -7,7 +7,7 @@ driver:
 
 lint: |
   yamllint .
-  ansible-lint
+  ansible-lint .
 
 platforms:
   - name: ubuntu16

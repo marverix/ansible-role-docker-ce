@@ -1,3 +1,4 @@
 ---
 docker_sdk_version: 4.2.0
 docker_compose_version: 1.25.4
+docker_reset_connection: yes
