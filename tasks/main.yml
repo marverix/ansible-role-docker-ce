@@ -121,14 +121,14 @@
     name: docker
     version: "{{ docker_sdk_version }}"
     state: present
-  when: docker_sdk_version
+  when: "not (docker_sdk_version is false)"
 
 - name: Install Docker Compose
   pip:
     name: docker-compose
     version: "{{ docker_compose_version }}"
     state: present
-  when: docker_compose_version
+  when: "not (docker_compose_version is false)"
 
 - name: Add user to docker group
   user:
