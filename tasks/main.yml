@@ -129,7 +129,7 @@
     version: "{{ docker_compose_version }}"
     state: present
   when: docker_compose_version != false
-  
+
 - name: Add user to docker group
   user:
     name: "{{ docker_user | default(ansible_user_id) }}"

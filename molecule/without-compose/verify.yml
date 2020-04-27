@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+
+    - name: Check docker version
+      shell: docker --version
+      register: test
+
+    - name: Assert docker version
+      assert:
+        that: "'Docker version' in test.stdout"
+
+    - name: Try hello-world image
+      shell: docker run hello-world
+      register: test
+
+    - name: Assert hello-world is working
+      assert:
+        that: "'Hello from Docker!' in test.stdout"
