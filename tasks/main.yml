@@ -10,7 +10,7 @@
   block:
 
     - name: Uninstall old packages
-      yum:
+      apt:
         name:
           - docker
           - docker-engine
@@ -121,15 +121,15 @@
     name: docker
     version: "{{ docker_sdk_version }}"
     state: present
-  when: "not (docker_sdk_version is false)"
+  when: docker_sdk_version != false
 
 - name: Install Docker Compose
   pip:
     name: docker-compose
     version: "{{ docker_compose_version }}"
     state: present
-  when: "not (docker_compose_version is false)"
-
+  when: docker_compose_version != false
+  
 - name: Add user to docker group
   user:
     name: "{{ docker_user | default(ansible_user_id) }}"
