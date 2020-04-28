@@ -40,7 +40,7 @@ Variable | Description | Default Value
 `docker_sdk_version` | Version of Python Docker SDK to be installed. Set `no` to skip installation | `4.2.0`
 `docker_compose_version` | Version of Docker Compose to be installed. Set `no` to skip installation | `1.25.4`
 `docker_user` | User that should be allowed to use Docker | _ansible_user_id_
-`docker_reset_connection` | Try to reset connection to apply user group changes | `yes`
+`docker_reset_connection` | Try to reset connection to apply user group changes | `no`
 
 ## Dependencies
 
