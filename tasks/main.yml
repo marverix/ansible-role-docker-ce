@@ -135,7 +135,3 @@
     name: "{{ docker_user | default(ansible_user_id) }}"
     groups: docker
     append: yes
-
-- name: Reset SSH connection to allow user changes to affect
-  meta: reset_connection
-  when: docker_reset_connection

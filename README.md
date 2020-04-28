@@ -12,7 +12,6 @@ Ansible role that installs on linux Docker CE + Docker Compose + Python Docker S
 - ✔️ Installing Docker Community Edition
   - Removes all old versions before
   - You can specify which user should be added to group `docker`
-  - Tries to reset SSH connection to apply group changes right away
 - ✔️ Installing Docker Compose
   - You can define which version should be installed
   - You can skip installation
@@ -40,7 +39,6 @@ Variable | Description | Default Value
 `docker_sdk_version` | Version of Python Docker SDK to be installed. Set `no` to skip installation | `4.2.0`
 `docker_compose_version` | Version of Docker Compose to be installed. Set `no` to skip installation | `1.25.4`
 `docker_user` | User that should be allowed to use Docker | _ansible_user_id_
-`docker_reset_connection` | Try to reset connection to apply user group changes | `no`
 
 ## Dependencies
 
