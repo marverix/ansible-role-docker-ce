@@ -15,7 +15,7 @@ Ansible role that installs on linux Docker CE + Docker Compose + Python Docker S
 - ✔️ Installing Docker Compose
   - You can define which version should be installed
   - You can skip installation
-  - Double-check that the newest version of `pip` is installed
+  - Double-check that the last cross-python version of `pip` is installed (20.3.4)
 - ✔️ Installing Python Docker SDK
   - You can define which version should be installed  
   - You can skip installation
@@ -25,6 +25,7 @@ Ansible role that installs on linux Docker CE + Docker Compose + Python Docker S
 
 - ✔️ Ubuntu 16.04 (Xenial)
 - ✔️ Ubuntu 18.04 (Bionic)
+- ✔️ Ubuntu 20.04 (Focal)
 - ✔️ CentOS 7
 
 ## Requirements
@@ -36,8 +37,8 @@ Ansible role that installs on linux Docker CE + Docker Compose + Python Docker S
 
 Variable | Description | Default Value
 --- | --- | ---
-`docker_sdk_version` | Version of Python Docker SDK to be installed. Set `no` to skip installation | `4.2.0`
-`docker_compose_version` | Version of Docker Compose to be installed. Set `no` to skip installation | `1.25.4`
+`docker_sdk_version` | Version of Python Docker SDK to be installed. Set `no` to skip installation | `4.4.4`
+`docker_compose_version` | Version of Docker Compose to be installed. Set `no` to skip installation | `1.26.2`
 `docker_user` | User that should be allowed to use Docker | _ansible_user_id_
 
 ## Dependencies

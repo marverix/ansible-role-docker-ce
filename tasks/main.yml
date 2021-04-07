@@ -2,6 +2,7 @@
 - name: "Update pip"
   pip:
     name: pip
+    version: "{{ pip_version }}"
     extra_args: --upgrade
 
   # https://docs.docker.com/install/linux/docker-ce/ubuntu/
