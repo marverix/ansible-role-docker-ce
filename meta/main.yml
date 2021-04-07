@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: docker-ce
+  role_name: docker_ce
   author: marverix
   description: Installs Docker CE + Docker Compose + Python Docker SDK
   license: ISC
