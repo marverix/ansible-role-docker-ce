@@ -1,0 +1,20 @@
+---
+docker_apt_gpg_key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+docker_os_dicts:
+  Ubuntu_16:
+    pip: pip
+    python_dev: python-dev
+  Ubuntu_18:
+    pip: pip
+    python_dev: python-dev
+  Ubuntu_20:
+    pip: pip3
+    python_dev: python3-dev
+
+  CentOS_7:
+    pip: pip
+    python_dev: python-devel
+  CentOS_8:
+    pip: pip3
+    python_dev: python3-devel

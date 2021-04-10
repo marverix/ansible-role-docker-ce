@@ -38,6 +38,13 @@ platforms:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
 
+  - name: centos8
+    image: pycontribs/centos:8
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+
 provisioner:
   name: ansible
 

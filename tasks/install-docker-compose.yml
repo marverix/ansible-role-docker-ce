@@ -1,0 +1,7 @@
+---
+- name: Install Docker Compose
+  pip:
+    name: docker-compose
+    version: "{{ docker_compose_version }}"
+    state: present
+    executable: "{{ docker_os_dict.pip }}"

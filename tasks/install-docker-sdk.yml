@@ -1,0 +1,7 @@
+---
+- name: Install Docker SDK
+  pip:
+    name: docker
+    version: "{{ docker_sdk_version }}"
+    state: present
+    executable: "{{ docker_os_dict.pip }}"
