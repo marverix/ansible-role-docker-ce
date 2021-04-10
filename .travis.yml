@@ -6,7 +6,9 @@ install:
   - pip install -r https://raw.githubusercontent.com/marverix/ansible-roles-common/latest/test-requirements.txt
 
 script:
-  - sh test.sh
+  - molecule --base-config molecule/base.yml test --scenario-name default
+  - molecule --base-config molecule/base.yml test --scenario-name without-sdk
+  - molecule --base-config molecule/base.yml test --scenario-name without-compose
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
